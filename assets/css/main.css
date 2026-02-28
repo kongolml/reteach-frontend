@@ -12,55 +12,59 @@ body {
   font-family: Arial, sans-serif;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 header {
   background-color: #ffe5d9;
   margin-bottom: 15px;
-
   padding: 10px;
   text-align: center;
 }
 
 .wrapper {
   width: 100%;
-  white-space: nowrap;
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: clamp(4px, 1vw, 10px); */
 }
 
 nav {
-  display: inline-block;
-  vertical-align: top;
   background-color: #dbfbdb;
-  padding: 10px;
-  height: 500px;
-  width: 20%;
+  /* padding: clamp(6px, 1.5vw, 10px); */
+  flex: 1 1 min(150px, 100%);
+  min-width: 0;
+  align-self: flex-start;
+  position: sticky;
+  top: 0;
 }
 
 main {
-  display: inline-block;
-  vertical-align: top;
   background-color: #e2eafc;
-  padding: 20px;
-  width: 80%;
-
+  /* padding: clamp(10px, 2vw, 20px); */
+  flex: 1 1 min(600px, 100%);
+  min-width: 0;
 }
 
 section {
-  display: inline-block;
-  vertical-align: top;
   background-color: #c1d3fe;
-  padding: 15px;
-  margin: 15px;
+  /* padding: clamp(8px, 1.5vw, 15px); */
+  margin: clamp(8px, 1.5vw, 15px);
 }
 
 article {
-  display: inline-block;
   background-color: #e0ffff;
-  padding: 10px;
+  /* padding: clamp(6px, 1.5vw, 10px); */
   width: 100%;
 }
 
 aside {
   background-color: #fffacd;
-  padding: 20px;
+  /* padding: clamp(10px, 2vw, 20px); */
+  flex: 1 1 min(200px, 100%);
+  min-width: 0;
 }
 
 footer {
