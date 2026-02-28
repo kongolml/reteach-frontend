@@ -1,6 +1,6 @@
 <template>
   <AwesomeArticle>
-    <h1>User Todo's</h1>
+    <h1>User's {{ route.params.id }} Todo's</h1>
     <div class="todo-container">
       <div class="todo-controls">
         <fieldset>
@@ -32,10 +32,34 @@
         </fieldset>
 
         <fieldset>
+          <legend>Order by status</legend>
+          <label>
+            <input type="radio" name="order" id="order-default" checked />
+            Default
+          </label>
+          <label>
+            <input type="radio" name="order" id="order-completed" />
+            Completed first
+          </label>
+          <label>
+            <input type="radio" name="order" id="order-pending" />
+            Pending first
+          </label>
+        </fieldset>
+
+        <fieldset>
           <legend>Actions</legend>
           <label>
-            <input type="checkbox" id="mark-all" />
+            <input type="radio" name="bulk-action" id="action-none" checked />
+            None
+          </label>
+          <label>
+            <input type="radio" name="bulk-action" id="action-mark-all" />
             Mark all as done
+          </label>
+          <label>
+            <input type="radio" name="bulk-action" id="action-unmark-all" />
+            Unmark all
           </label>
         </fieldset>
       </div>
@@ -88,6 +112,8 @@ const { data: todos } = useAsyncData(() =>
 .todo-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .todo-list li {
@@ -127,9 +153,24 @@ const { data: todos } = useAsyncData(() =>
   opacity: 0.5;
 }
 
-/* set all todos as done */
-.todo-container:has(#mark-all:checked) .todo-list span {
+/* order by status — based on live checkbox state */
+.todo-container:has(#order-completed:checked) .todo-list li:has(.todo-item input:not(:checked)) {
+  order: 1;
+}
+
+.todo-container:has(#order-pending:checked) .todo-list li:has(.todo-item input:checked) {
+  order: 1;
+}
+
+/* mark all as done */
+.todo-container:has(#action-mark-all:checked) .todo-list span {
   text-decoration: line-through;
   opacity: 0.5;
+}
+
+/* unmark all */
+.todo-container:has(#action-unmark-all:checked) .todo-list li:has(.todo-item input:checked) span {
+  text-decoration: none;
+  opacity: 1;
 }
 </style>
