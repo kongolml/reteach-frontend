@@ -4,6 +4,52 @@ This project is a basic Nuxt 3 (https://nuxt.com/docs/getting-started/introducti
 
 By clicking on one of the elements in the list, you are redirected to the user's profile, which contains the user's todo list.
 
+## Gallery page thoughts
+
+Lets utilize nuxt and its SSR.
+
+**Goal/end result:** move all fetching and tranfromation logic to server side, this way frontend makes a single request (GET /api/gallery)
+
+**HOW:**
+- paralellize all fetches with Promise.all
+- group photos/allbums/posts by user id as a key
+- return user "convinient" object
+
+**Pros/cons of using nuxt as full backend:**
+
+Pros:
+- no hard logic on client side
+- possibility of caching here, pagination etc.
+- frontend is now just a "rendering machine"
+- no need for CORS or auth setup on client side
+- one app - one deploy
+
+Cons:
+- requires additional error handlers to tell client what happened, maybe a need for a aligned error codes enum
+- wihtout caching might slow down server response time
+- no easy dynamic routing, flexible DB logic becomes complicated to implelent and maintain
+- if app requires authorization - you have to implement it on your own, which complicates architecture and adds additional layer of complexity
+- each request is a new instance of the app, which means no shared state between requests by default
+
+**Conclusion:**
+for gallery page this approach makes sense, as initial requirement for this page is to be a public page, this is a simple gallery page with any heavy logic
+
+## Accessibility improvements
+
+### Current State
+
+Good overall usage of html5 semantics - `<header>`, `<nav>`, `<main>`, `<aside>`, `<footer>`, `<article>`, `<section>`, `<fieldset>`.
+
+### What to improve
+
+- **No focus indicators in CSS** — `:focus` / `:focus-visible` (`assets/css/main.css`)
+- **Broken heading hierarchy in sidebar** — starts at H3, skips levels (`components/AwesomeSidebar.vue`)
+- **Unlabeled search inputs** — `<input placeholder="Search...">` with no `<label>` or `aria-label` (`components/UsersList.vue`, `pages/index.vue`)
+- **Missing H1 tags** — some pages starts at H2, user sections also use H2 creating a flat hierarchy (`pages/gallery.vue`)
+- **Dynamic content not announced** — Error/loading states lack `role="alert"` or `aria-live` attributes (`pages/user/[id].vue`, `pages/gallery.vue`)
+- **Label search inputs** — no `aria-label="Search users"` on the search `<input>`
+**No arial-labels on "in a new tab" links** - `target="_blank"` links has no `aria-label`
+
 ## Goal
 
 Please take no more than ~2 hours for this task. We are aware of everyone’s time limitations and appreciate you taking time to complete this challenge.
