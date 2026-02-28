@@ -32,7 +32,7 @@ Cons:
 - each request is a new instance of the app, which means no shared state between requests by default
 
 **Conclusion:**
-for gallery page this approach makes sense, as initial requirement for this page is to be a public page, this is a simple gallery page with any heavy logic
+for gallery page this approach makes sense, as initial requirement for this page is to be a public page - a simple gallery page without any heavy logic
 
 ## Accessibility improvements
 
