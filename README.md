@@ -48,7 +48,8 @@ Good overall usage of html5 semantics - `<header>`, `<nav>`, `<main>`, `<aside>`
 - **Missing H1 tags** — some pages starts at H2, user sections also use H2 creating a flat hierarchy (`pages/gallery.vue`)
 - **Dynamic content not announced** — Error/loading states lack `role="alert"` or `aria-live` attributes (`pages/user/[id].vue`, `pages/gallery.vue`)
 - **Label search inputs** — no `aria-label="Search users"` on the search `<input>`
-**No arial-labels on "in a new tab" links** - `target="_blank"` links has no `aria-label`
+- **No arial-labels on "in a new tab" links** - `target="_blank"` links has no `aria-label`
+- **Implement a "UX sugar": keyboard arrows navigation, utilize spacebar etc.**
 
 ## Goal
 
