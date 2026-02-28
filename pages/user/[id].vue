@@ -1,6 +1,6 @@
 <template>
   <AwesomeArticle>
-    <h1 v-if="validUserId">User's {{ userId }} Todo's</h1>
+    <h1 v-if="isUserIdValid">User's {{ userId }} Todo's</h1>
 
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
 
