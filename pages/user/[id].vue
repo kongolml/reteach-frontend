@@ -92,7 +92,7 @@ const { data: todos } = isUserIdValid
 
 const errorMessage = computed(() => {
   if (!isUserIdValid) return 'Ugh, this is not a valid user id ;-C';
-  if (!todos.value || todos.value.length === 0) return 'Hmm, no such user...';
+  if (!todos.value || !todos.value.length) return 'Hmm, no such user...';
   return null;
 });
 </script>
