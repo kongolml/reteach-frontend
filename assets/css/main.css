@@ -28,12 +28,10 @@ header {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  /* gap: clamp(4px, 1vw, 10px); */
 }
 
 nav {
   background-color: #dbfbdb;
-  /* padding: clamp(6px, 1.5vw, 10px); */
   flex: 1 1 min(150px, 100%);
   min-width: 0;
   align-self: flex-start;
@@ -43,26 +41,22 @@ nav {
 
 main {
   background-color: #e2eafc;
-  /* padding: clamp(10px, 2vw, 20px); */
   flex: 1 1 min(600px, 100%);
   min-width: 0;
 }
 
 section {
   background-color: #c1d3fe;
-  /* padding: clamp(8px, 1.5vw, 15px); */
   margin: clamp(8px, 1.5vw, 15px);
 }
 
 article {
   background-color: #e0ffff;
-  /* padding: clamp(6px, 1.5vw, 10px); */
   width: 100%;
 }
 
 aside {
   background-color: #fffacd;
-  /* padding: clamp(10px, 2vw, 20px); */
   flex: 1 1 min(200px, 100%);
   min-width: 0;
 }
