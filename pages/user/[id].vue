@@ -41,11 +41,7 @@
       </div>
 
       <ul class="todo-list">
-        <li
-          v-for="todo in todos"
-          :key="todo.id"
-          :data-completed="String(todo.completed)"
-        >
+        <li v-for="todo in todos" :key="todo.id" :data-completed="String(todo.completed)">
           <label class="todo-item">
             <input type="checkbox" :checked="todo.completed" />
             <span>{{ todo.title }}</span>
