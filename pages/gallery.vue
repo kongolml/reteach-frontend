@@ -16,6 +16,8 @@
         <p>Comments: {{ userGallery.comments.length }}</p>
         <div class="gallery">
           <template v-for="img in userGallery.photos" :key="img.id">
+            <!-- TODO: utilize lazy loading with loading="lazy" so image will be downloaded only when it's in viewport -->
+            <!-- TODO: for very long lists - think about virtualization to not buildup very large DOM -->
             <img :src="img.picture" :alt="img.title" class="photo" />
           </template>
         </div>
@@ -67,7 +69,25 @@ const sortByUser = computed(() => {
 /**
  * Load specific user statistics
  */
+
+/**
+ * TODO: this function awaits requests one by one even though they are not dependent on each other - can be wrapped in Promise.all
+ */
 async function loadUserStatistics() {
+  // Example of Promise.all - clean, elegant
+  // await Promise.all(users.value.map(async (user) => {
+  //   const [albums, posts, comments] = await Promise.all([
+  //     fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/albums`).then(r => r.json()),
+  //     fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`).then(r => r.json()),
+  //     fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/comments`).then(r => r.json()),
+  //   ]);
+
+  //   user.albums = albums;
+  //   user.posts = posts;
+  //   user.comments = comments;
+  // }));
+
+
   for (const user of users.value) {
     (user.albums = []), (user.posts = []), (user.comments = []);
 

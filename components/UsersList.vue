@@ -29,6 +29,6 @@ const filteredUsers = computed(() =>
 );
 
 const { data: users } = useAsyncData(() =>
-  fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json())
+  $fetch('https://jsonplaceholder.typicode.com/users')
 );
 </script>
