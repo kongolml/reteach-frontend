@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { $fetch, setup } from '@nuxt/test-utils/e2e';
 
-describe('login page', async () => {
+describe('gallery page', async () => {
   await setup({});
 
   it('displays at least one image', async () => {

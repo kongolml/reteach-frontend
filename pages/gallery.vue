@@ -1,5 +1,5 @@
 <!-- 
-Recommentaions:
+Page loading performance recommentaions:
 1) Move data pull and manipulation to a server — eliminates client fetches, single request. (example: server/api/gallery.get.js)
 2) Parallelize independent fetches — initial loadUserStatistics awaits requests one by one in a parent loop - too much requests for a client side. (code draft: Promise.all)
 3) Use loading="lazy" attribute for imaeges - load images only  when htey are in a viewport 
