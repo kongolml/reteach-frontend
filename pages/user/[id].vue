@@ -1,7 +1,10 @@
 <template>
   <AwesomeArticle>
-    <h1>User's {{ route.params.id }} Todo's</h1>
-    <div class="todo-container">
+    <h1 v-if="validUserId">User's {{ userId }} Todo's</h1>
+
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+    <div v-else class="todo-container">
       <div class="todo-controls">
         <fieldset>
           <legend>Filter by status</legend>
@@ -78,16 +81,29 @@
 
 <script setup>
 const route = useRoute();
+const userId = Number(route.params.id);
+const isUserIdValid = Number.isInteger(userId) && userId > 0;
 
-// use $fetch - best practice https://nuxt.com/docs/3.x/api/utils/dollarfetch#usage
-const { data: todos } = useAsyncData(() =>
-  $fetch(
-    `https://jsonplaceholder.typicode.com/users/${route.params.id}/todos`
+const { data: todos } = isUserIdValid
+  ? await useAsyncData(() =>
+    $fetch(`https://jsonplaceholder.typicode.com/users/${userId}/todos`)
   )
-);
+  : { data: ref(null) };
+
+const errorMessage = computed(() => {
+  if (!isUserIdValid) return 'Ugh, this is not a valid user id ;-C';
+  if (!todos.value || todos.value.length === 0) return 'Hmm, no such user...';
+  return null;
+});
 </script>
 
 <style scoped>
+.error-message {
+  color: #b00;
+  font-weight: bold;
+  padding: 1rem 0;
+}
+
 .todo-controls {
   display: flex;
   flex-wrap: wrap;
