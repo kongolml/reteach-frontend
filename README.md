@@ -49,7 +49,7 @@ Good overall usage of html5 semantics - `<header>`, `<nav>`, `<main>`, `<aside>`
 - **Dynamic content not announced** — Error/loading states lack `role="alert"` or `aria-live` attributes (`pages/user/[id].vue`, `pages/gallery.vue`)
 - **Label search inputs** — no `aria-label="Search users"` on the search `<input>`
 - **No arial-labels on "in a new tab" links** - `target="_blank"` links has no `aria-label`
-- **Implement a "UX sugar": keyboard arrows navigation, utilize spacebar etc.**
+- **Implement a "UX sugar"** - add keyboard arrows navigation, utilize spacebar etc.
 
 ## Goal
 
